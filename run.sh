@@ -10,7 +10,9 @@ build(){
 
 main() {
     build
-    ./ceres-curve-fitting
+    ./ceres-curve-fitting 
+    echo "plotting with python"
+    python3 ../main.py ceres-output.txt
 }
 
 main
