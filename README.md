@@ -7,18 +7,18 @@ Ceres is an optimizer built for solving non-linear least-squares problems -- giv
 The data consists of 100 observations from x=0 to x=5, with y values being generated according to the curve y=exp(mx+c) with m=0.3 and c=0.1 with added gaussian noise with a standard deviation 0.2.
 
 ```cpp
-double m_data = 0.3;
-double c_data = 0.1;
+double m_obs = 0.3;
+double c_obs = 0.1;
 int N = 100;
 
 cv::RNG rng;
 double sigma = 0.2;
-std::vector<double> x_vals, y_vals;
+std::vector<double> x_obs, y_obs;
 
 for(int i=0; i<N; ++i) {
-    double x = i/20;
-    x_vals.push_back(x);
-    y_vals.push_back(exp(m_data * x + c_data) + rng.gaussian(sigma));
+    double x_i = i/20;
+    x_obs.push_back(x_i);
+    y_obs.push_back(exp(m_obs * x_i + c_obs) + rng.gaussian(sigma));
 }
 
 ```
@@ -61,8 +61,6 @@ Starting with initial values of m and c as 0, after 14 iterations they converged
 
 The figure below shows the data plotted. This data was written to `ceres-output.txt` in the `build/` directory since I'm having trouble suppressing the Ceres output. The python script `main.py` reads the file and plots the data with matplotlib.
 
-
-
 <p align="center"><img src="https://raw.githubusercontent.com/onlycase/ceres-curve-fitting/master/assets/ceres-output.png"/></p>
 
 
@@ -70,12 +68,10 @@ The figure below shows the data plotted. This data was written to `ceres-output.
 
 * ceres
 * opencv
-
 * matplotlib
+
 ## to do
 
-* options to output raw data or output iterations
-* plotting groundtruth, observations, fitted curve
 * robust curve fitting
 
 ## to run
